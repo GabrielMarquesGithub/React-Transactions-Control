@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    //lib recebe os tipos que iremos trabalhar, neste caso com tipos presentes no DOM
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    //allowJS permite ou não a presença de arquivos .JS
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    //permite a importação de JSON
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx"
+  },
+  //informa ao TS onde está o código da aplicação
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
