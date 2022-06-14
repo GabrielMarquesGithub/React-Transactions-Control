@@ -1,5 +1,5 @@
 # React-Transactions-Control
-Projeto simples para registros e controle de transações feito com React
+Projeto simples para registros e controle de transações feito com React e utilizando o mirageJs para simulação de um back-end
 
 ## Ferramentas
 * React versão 18
