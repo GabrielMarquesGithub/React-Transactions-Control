@@ -25,19 +25,26 @@ interface TransactionContextData {
 }
 
 //Quando o contexto se inicia com o objeto não a muito o que fazer, geralmente se força a tipagem que ele receberá posteriormente
-export const TransactionsContext = createContext<TransactionContextData>({} as TransactionContextData);
+export const TransactionsContext = createContext<TransactionContextData>(
+  {} as TransactionContextData
+);
 
 export function TransactionsProvider({ children }: TransactionsProviderProps) {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
 
   useEffect(() => {
     //get indica que é uma busca na Api
-    api.get("transactions").then((response) => setTransactions(response.data.transactions));
+    api
+      .get("transactions")
+      .then((response) => setTransactions(response.data.transactions));
   }, []);
 
   const createTransaction = async (transactionInput: TransactionInput) => {
     //chamando a fake api na rota '/transactions' e passando os dados a ela
-    const { data } = await api.post("/transactions", { ...transactionInput, createAt: new Date() });
+    const { data } = await api.post("/transactions", {
+      ...transactionInput,
+      createAt: new Date(),
+    });
     const { transaction } = data;
     setTransactions([...transactions, transaction]);
   };
@@ -45,11 +52,15 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
     //chamando a fake api na rota '/remove' e passando o id do item a ser removido via URL
     await api.delete(`/remove/${transactionRemove.id}`);
     //filtrando as transações e excluindo a com id passado
-    setTransactions(transactions.filter((value) => value.id !== transactionRemove.id));
+    setTransactions(
+      transactions.filter((value) => value.id !== transactionRemove.id)
+    );
   };
 
   return (
-    <TransactionsContext.Provider value={{ transactions, createTransaction, removeTransaction }}>
+    <TransactionsContext.Provider
+      value={{ transactions, createTransaction, removeTransaction }}
+    >
       {children}
     </TransactionsContext.Provider>
   );

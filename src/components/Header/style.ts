@@ -27,4 +27,8 @@ export const Content = styled.div`
       filter: brightness(0.9);
     }
   }
+  @media (max-width: 400px) {
+    flex-direction: column;
+    gap: 1rem;
+  }
 `;
